@@ -4,6 +4,7 @@
 
 #pragma once
 
+#define PI 3.1415926
 
 class CGroup3View : public CView
 {
@@ -29,7 +30,18 @@ protected:
 
 // 实现
 public:
+	double ViewPointz;
+	double ViewPointy;
+	double ViewPointx;
+	double Tk[9];
+	double TR, Theta, Phi, d;
+	double Ia, Ip, ka, kd, ks, ns, LPx, LPy, LPz;
+
 	virtual ~CGroup3View();
+
+	virtual void CGroup3View::HideSphere(CDC* pDC, float R);
+	virtual void CGroup3View::FillSphere(CDC* pDC, float R);
+	virtual void CGroup3View::DrawXY();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -43,6 +55,10 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnMyDraw();
+	afx_msg void OnMyFill();
+	afx_msg void OnClear();
 };
 
 #ifndef _DEBUG  // Group3View.cpp 中的调试版本
