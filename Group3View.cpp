@@ -101,6 +101,8 @@ void CGroup3View::FillSphere(CDC* pDC, double R) {
 
 	Ie = Ia * ka;
 
+	bool del = false;
+
 	//floor-1
 	a1 = 0; a3 = 72;
 	for (int ii = 1; ii <= 5; ++ii)
@@ -130,7 +132,7 @@ void CGroup3View::FillSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			lx = LPx - x[0]; ly = LPy - y[0]; lz = LPz - z[0];
 			mv = sqrt(lx * lx + ly * ly + lz * lz);
@@ -204,7 +206,7 @@ void CGroup3View::FillSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			lx = LPx - x[0]; ly = LPy - y[0]; lz = LPz - z[0];
 			mv = sqrt(lx * lx + ly * ly + lz * lz);
@@ -278,7 +280,7 @@ void CGroup3View::FillSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			lx = LPx - x[0]; ly = LPy - y[0]; lz = LPz - z[0];
 			mv = sqrt(lx * lx + ly * ly + lz * lz);
@@ -352,7 +354,7 @@ void CGroup3View::FillSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			lx = LPx - x[0]; ly = LPy - y[0]; lz = LPz - z[0];
 			mv = sqrt(lx * lx + ly * ly + lz * lz);
@@ -420,7 +422,7 @@ void CGroup3View::HideSphere(CDC* pDC, double R) {
 	pp = py * sin(36 * PI / 180);
 	pH = sqrt(pow(px * sqrt(3) / 2, 2) + pp * pp) / 2;
 
-
+	bool del = true;
 	//floor-1
 	a1 = 0; a3 = 72;
 	for (int ii = 1; ii <= 5; ++ii)
@@ -450,7 +452,7 @@ void CGroup3View::HideSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			for (int k = 0; k < 3; k++)
 			{
@@ -497,7 +499,7 @@ void CGroup3View::HideSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			for (int k = 0; k < 3; k++)
 			{
@@ -544,7 +546,7 @@ void CGroup3View::HideSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+		if (costheta >= 0 || del)
 		{
 			for (int k = 0; k < 3; k++)
 			{
@@ -592,7 +594,9 @@ void CGroup3View::HideSphere(CDC* pDC, double R) {
 		yv = yv / mv;
 		zv = zv / mv;
 		costheta = xn * xv + yn * yv + zn * zv;
-		if (costheta >= 0)
+
+		
+		if (costheta >= 0 || del)
 		{
 			for (int k = 0; k < 3; k++)
 			{
