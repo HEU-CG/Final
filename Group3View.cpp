@@ -78,7 +78,7 @@ BOOL CGroup3View::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 // CGroup3View 绘图
-void CGroup3View::FillSphere(CDC* pDC, float R) {
+void CGroup3View::FillSphere(CDC* pDC, double R) {
 	CPoint rgnpoints[4];
 	COLORREF fillColor;
 	CBrush brush;
@@ -398,7 +398,7 @@ void CGroup3View::FillSphere(CDC* pDC, float R) {
 	}
 }
 
-void CGroup3View::HideSphere(CDC* pDC, float R) {
+void CGroup3View::HideSphere(CDC* pDC, double R) {
 	double x[4], y[4], z[4];
 	double x1[4], y1[4], z1[4];
 	int a1, a2, a3;
@@ -731,7 +731,7 @@ void CGroup3View::OnMyDraw()
 	pDC->SetWindowExt(rect.Width(), rect.Height());
 	pDC->SetViewportExt(rect.Width(), -rect.Height());
 	pDC->SetViewportOrg(rect.Width() / 2, rect.Height() / 2);
-	HideSphere(pDC, 70);
+	HideSphere(pDC, 100);
 	ReleaseDC(pDC);
 }
 
@@ -746,7 +746,7 @@ void CGroup3View::OnMyFill()
 	pDC->SetWindowExt(rect.Width(), rect.Height());
 	pDC->SetViewportExt(rect.Width(), -rect.Height());
 	pDC->SetViewportOrg(rect.Width() / 2, rect.Height() / 2);
-	FillSphere(pDC, 70);
+	FillSphere(pDC, 100);
 	ReleaseDC(pDC);
 }
 

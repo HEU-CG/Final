@@ -39,8 +39,8 @@ public:
 
 	virtual ~CGroup3View();
 
-	virtual void CGroup3View::HideSphere(CDC* pDC, float R);
-	virtual void CGroup3View::FillSphere(CDC* pDC, float R);
+	virtual void CGroup3View::HideSphere(CDC* pDC, double R);
+	virtual void CGroup3View::FillSphere(CDC* pDC, double R);
 	virtual void CGroup3View::DrawXY();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
