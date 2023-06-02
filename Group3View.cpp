@@ -998,7 +998,7 @@ void CGroup3View::OnClear()
 	// TODO: 在此添加命令处理程序代码
 	CDC* pDC = GetDC();
 	CRect rect;
-	GetClientRect(rect);
+	GetClientRect(&rect);
 	CBrush BkBrush;
 	BkBrush.CreateSolidBrush(RGB(255, 255, 255));
 	pDC->FillRect(rect, &BkBrush);
