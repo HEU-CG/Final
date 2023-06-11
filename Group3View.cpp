@@ -32,6 +32,7 @@ BEGIN_MESSAGE_MAP(CGroup3View, CView)
 	ON_COMMAND(ID_DRAW, &CGroup3View::OnMyDraw)
 	ON_COMMAND(ID_FILL, &CGroup3View::OnMyFill)
 	ON_COMMAND(ID_CLEAR, &CGroup3View::OnClear)
+	ON_COMMAND(ID_CONFIG, &CGroup3View::OnMyConfig)
 END_MESSAGE_MAP()
 
 // CGroup3View 构造/析构
@@ -44,7 +45,13 @@ CGroup3View::CGroup3View() noexcept
 	d = 1000;   // 投影面到视点的距离
 	Phi = 90;   // 俯仰角
 	Theta = 60; // 方位角
+	is_rotate = false;
+	sleep_time = 100;
+	change();
+	
+}
 
+void CGroup3View::change() {
 	Tk[1] = sin(PI * Theta / 180);
 	Tk[2] = sin(PI * Phi / 180);
 	Tk[3] = cos(PI * Theta / 180);
@@ -973,7 +980,20 @@ void CGroup3View::OnMyDraw()
 	pDC->SetWindowExt(rect.Width(), rect.Height());
 	pDC->SetViewportExt(rect.Width(), -rect.Height());
 	pDC->SetViewportOrg(rect.Width() / 2, rect.Height() / 2);
-	HideSphere(pDC, 100);
+	if (is_rotate) {
+		for (int i = 0; i < 20; ++i) {
+			OnClear();
+			HideSphere(pDC, 100);
+			Theta += 10;
+			Phi += 10;
+			change();
+			Sleep(100);
+		}
+	}
+	else {
+		OnClear();
+		HideSphere(pDC, 100);
+	}
 	ReleaseDC(pDC);
 }
 
@@ -988,7 +1008,20 @@ void CGroup3View::OnMyFill()
 	pDC->SetWindowExt(rect.Width(), rect.Height());
 	pDC->SetViewportExt(rect.Width(), -rect.Height());
 	pDC->SetViewportOrg(rect.Width() / 2, rect.Height() / 2);
-	FillSphere(pDC, 100);
+	if (is_rotate) {
+		for (int i = 0; i < 20; ++i) {
+			OnClear();
+			FillSphere(pDC, 100);
+			Theta += 10;
+			Phi += 10;
+			change();
+			Sleep(100);
+		}
+	}
+	else {
+		OnClear();
+		FillSphere(pDC, 100);
+	}
 	ReleaseDC(pDC);
 }
 
@@ -1004,4 +1037,19 @@ void CGroup3View::OnClear()
 	pDC->FillRect(rect, &BkBrush);
 	DrawXY();
 	ReleaseDC(pDC);
+}
+
+
+void CGroup3View::OnMyConfig()
+{
+	// TODO: 在此添加命令处理程序代码
+	is_rotate = !is_rotate;
+	CString strMessage;
+	if (is_rotate) {
+		strMessage.Format(L"已设置为可旋转");
+	}
+	else {
+		strMessage.Format(L"已设置为不可旋转");
+	}
+	AfxMessageBox(strMessage);
 }

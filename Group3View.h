@@ -37,11 +37,15 @@ public:
 	double TR, Theta, Phi, d;
 	double Ia, Ip, ka, kd, ks, ns, LPx, LPy, LPz;
 
+	BOOL is_rotate;
+	int sleep_time;
+
 	virtual ~CGroup3View();
 
 	virtual void CGroup3View::HideSphere(CDC* pDC, double R);
 	virtual void CGroup3View::FillSphere(CDC* pDC, double R);
 	virtual void CGroup3View::DrawXY();
+	virtual void CGroup3View::change();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -59,6 +63,7 @@ public:
 	afx_msg void OnMyDraw();
 	afx_msg void OnMyFill();
 	afx_msg void OnClear();
+	afx_msg void OnMyConfig();
 };
 
 #ifndef _DEBUG  // Group3View.cpp 中的调试版本
